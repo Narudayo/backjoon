@@ -1,60 +1,38 @@
 #include <iostream>
 
 using namespace std;
+int findSquareRoot(int N, int k);
 
-class FruitSeller{
-    private:
-        int APPLE_PRICE;
-        int numOfApples;
-        int myMoney;
+int main(){
 
-    public:
-        void InitMembers(int price, int num, int money){
-            APPLE_PRICE=price;
-            numOfApples=num;
-            myMoney=money;
-        }
-        int SaleApples(int money){
-            int num=money/APPLE_PRICE;
-            numOfApples-=num;
-            myMoney+=money;
-            return num;
-        }
-        void ShowSalesResult(){
-            cout<<"남은 사과"<<numOfApples<<endl;
-            cout<<"판매 수익"<<myMoney<<endl<<endl;
-        }
-};
+    // N = 3^k
+    int N;
+    cin>>N;
+    int k = findSquareRoot(N,1);
 
-class FruitBuyer{
-    int myMoney;
-    int numOfApples;
 
-    public:
-        void InitMembers(int money){
-            myMoney=money;
-            numOfApples=0;
-        }
-        void BuyApples(FruitSeller &seller, int money){
-            numOfApples+=seller.SaleApples(money);
-            myMoney-=money;
-        }
-        void ShowBuyResult(){
-            cout<<"현재 잔액"<<myMoney<<endl;
-            cout<<"사과 개수"<<numOfApples<<endl;
-        }
-};
-
-int main(void){
-    FruitSeller seller;
-    seller.InitMembers(1000,20,0);
-    FruitBuyer buyer;
-    buyer.InitMembers(5000);
-    buyer.BuyApples(seller,2000);
-
-    cout<<"과일 판매자 현황"<<endl;
-    seller.ShowSalesResult();
-    cout<<"과일 구매자 현황"<<endl;
-    buyer.ShowBuyResult();
     return 0;
 }
+
+// findSquareRoot => N에 상응하는 k값을 반환. 1<=k<8
+int findSquareRoot(int N, int k){
+    if(N==3)    return k;
+    return findSquareRoot(N/3,k+1);
+}
+
+// printStar => 상수 N,k 에서 현재값 curr을 변경하며 recursion
+void printStar(int N, int k, int curr){
+
+    // 한 줄에 별을 N만큼 찍었을(공백포함) 때, n으로 나눈 나머지가 0일 때 endl
+    // 가운데이면 공백. 가운데는 어떻게 알지?
+    // (1) 현재 줄에서 3으로 나눈 나머지가 1이고,
+    // (2) 출력 횟수에서 3으로 나눈 나머지가 1이면.
+    // (1),(2) 이면 가운데. 공백출력
+
+    if()
+
+    cout<<"*";
+    if(N%k == 0)  cout<<endl;
+
+}
+
